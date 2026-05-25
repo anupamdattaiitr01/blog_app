@@ -1,6 +1,28 @@
 <%- include('partials/header') %>
 
-      <h1>Welcome to DevBlog</h1>
-      <p>This page will soon display a beautiful feed of dynamic blog stories. Stay tuned!</p>
+      <h1>Latest Stories</h1>
 
-      <%- include('partials/footer') %>
+      <% if (posts.length===0) { %>
+            <p>No posts available. Be the first to share your thoughts!</p>
+            <a href="/posts/new">Write a Post</a>
+            <% } else { %>
+                  <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+                        <% posts.forEach(post=> { %>
+                              <article style="border: 1px solid #ddd; padding: 15px; border-radius: 6px;">
+                                    <h2>
+                                          <%= post.title %>
+                                    </h2>
+                                    <p>
+                                          <%= post.content %>
+                                    </p>
+
+                                    <div style="margin-top: 10px;">
+                                          <a href="/posts/<%= post.id %>/edit">Edit</a> |
+                                          <button disabled style="cursor: not-allowed; opacity: 0.5;">Delete</button>
+                                    </div>
+                              </article>
+                              <% }) %>
+                  </div>
+                  <% } %>
+
+                        <%- include('partials/footer') %>
