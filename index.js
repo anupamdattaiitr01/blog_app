@@ -28,7 +28,7 @@ app.post('/posts', (req, res) => {
 
       // Create a new structured post object
       const newPost = {
-            id: Date.now().toString(), // Generates a clean, unique string ID using a timestamp
+            id: Date.now().toString(),
             title: title,
             content: content
       };
